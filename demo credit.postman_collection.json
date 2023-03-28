@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "a5dcfb76-6830-4126-a8f8-64996f6ee56c",
+		"name": "demo credit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"The count is equal to the number of items rx\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.count).to.eql(jsonData.rows.length);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"pass\",\r\n    \"email\": \"newuser2@gmail.com\",\r\n    \"name\": \"New User2 \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login existing user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"newuser@gmail.com\",\r\n    \"password\": \"pass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v0/auth/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"auth",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImYxMmU0NTQwLWVhZGItNDJlZi05ZmM4LTg3YjE0Nzc4ZTZhOSIsImVtYWlsIjoibmV3dXNlckBnbWFpbC5jb20iLCJuYW1lIjoiTmV3IFVzZXIgIiwid2FsbGV0X2JhbCI6MH0.Vr6207ROpUbfuHcfVetS2FxSThpb5lUN_B9fxPepiYk",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "create account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountName\": \"My current account\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v0/create/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fund account from wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNum\": 100001,\r\n    \"amount\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v0/fund/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"fund",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer to account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fromAccount\": 100001,\r\n    \"toAccount\": 100002,\r\n    \"amount\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v0/transfer/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"transfer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Withdraw from account to wallet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountNum\": 100000,\r\n    \"amount\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v0/withdraw/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"withdraw",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v0/accounts/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all accounts of a user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v0/accounts/byUserId/?userid=aba2ffa0-733a-49c7-a9cd-08130a0fcb6c",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"accounts",
+						"byUserId",
+						""
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "aba2ffa0-733a-49c7-a9cd-08130a0fcb6c"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjA3NmI4NmU4LTZhZjAtNDQ3Zi1hNGNhLWJhYjgwNmQ0YzNlOCIsImVtYWlsIjoibmV3dXNlcjJAZ21haWwuY29tIiwibmFtZSI6Ik5ldyBVc2VyMiAiLCJ3YWxsZXRfYmFsIjowfQ.3RdBzgyAs7zxLUOBBwbdoWi1a8zT68NSX92gIcp3wgA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8100",
+			"type": "default"
+		}
+	]
+}
