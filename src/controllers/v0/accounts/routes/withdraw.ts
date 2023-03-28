@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import {knexInstance} from '../../../../knex';
-import { requireAuth } from '../../users/routes/auth'
+import { requireAuth } from '../../../../utils/auth'
 import { decodeJwt } from '../../../../utils/jwt'
 
 const router: Router = Router();
@@ -39,7 +39,7 @@ router.post('/',
         // Checks if the account belongs to the current user
         const accUserId = getAccount[0].user_id
         if (user_id !== accUserId){
-            return res.status(400).send({ auth: false, message: 'You can\'t fund this account, because it does not belong to the current user ' });
+            return res.status(400).send({ auth: false, message: 'You can\'t withdraw from this account, because it does not belong to the current user ' });
         }
 
         // make sure tha the ammount about to be withdrawn from it is not more than it's actual balance

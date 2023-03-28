@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import * as bcrypt from 'bcrypt';
 
-import { generatePassword, comparePasswords, requireAuth } from '../controllers/v0/users/routes/auth';
+import { generatePassword, comparePasswords, requireAuth } from '../utils/auth';
 import { decodeJwt } from '../utils/jwt';
 
 describe('generatePassword', () => {

@@ -1,3 +1,2 @@
 node_modules
-
-set.env.sh
+set_env copy.sh

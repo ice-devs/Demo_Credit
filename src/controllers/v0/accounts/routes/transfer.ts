@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import {knexInstance} from '../../../../knex';
-import { requireAuth } from '../../users/routes/auth'
+import { requireAuth } from '../../../../utils/auth'
 import { decodeJwt } from '../../../../utils/jwt'
 
 const router: Router = Router();

@@ -1,14 +1,16 @@
 import {Router, Request, Response} from 'express';
 import {AuthRouter} from './users/routes/auth';
+import {DepositRouter} from './users/routes/deposit';
 import {CreateRouter} from './accounts/routes/create';
 import {FundRouter} from './accounts/routes/fund';
 import {TransferRouter} from './accounts/routes/transfer';
 import {WithdrawRouter} from './accounts/routes/withdraw';
-import {ListAccountsRouter} from './accounts/routes/list_accounts';
+import {ListAccountsRouter} from './accounts/routes/accounts';
 
 const router: Router = Router();
 
 router.use('/auth/', AuthRouter);
+router.use('/deposit/', DepositRouter);
 router.use('/create/', CreateRouter);
 router.use('/fund/', FundRouter);
 router.use('/transfer/', TransferRouter);
