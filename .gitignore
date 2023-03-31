@@ -1,2 +1,10 @@
 node_modules
 set_env copy.sh
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.
+www
+ice-key.pem
+.gitignore
+.ebextensions

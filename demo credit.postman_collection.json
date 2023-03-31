@@ -6,10 +6,10 @@
 	},
 	"item": [
 		{
-			"name": "users",
+			"name": "User wallet",
 			"item": [
 				{
-					"name": "create user",
+					"name": "create user wallet profile",
 					"event": [
 						{
 							"listen": "test",
@@ -33,11 +33,14 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"pass\",\r\n    \"email\": \"newuser2@gmail.com\",\r\n    \"name\": \"New User2 \"\r\n}",
+							"raw": "{\r\n    \"password\": \"pass\",\r\n    \"email\": \"newuser1@gmail.com\",\r\n    \"name\": \"New User \"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -61,11 +64,14 @@
 				{
 					"name": "login existing user",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"newuser@gmail.com\",\r\n    \"password\": \"pass\"\r\n}",
+							"raw": "{\r\n    \"email\": \"newuser1@gmail.com\",\r\n    \"password\": \"pass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,6 +88,34 @@
 								"v0",
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit into wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"newuser@gmail.com\",\r\n    \"amount\": 300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/deposit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"deposit"
 							]
 						}
 					},
@@ -141,179 +175,186 @@
 			]
 		},
 		{
-			"name": "create account",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"accountName\": \"My current account\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "create account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountName\": \"New user account \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/create/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"create",
+								""
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/api/v0/create/",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"v0",
-						"create",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "fund account from wallet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"accountNum\": 100001,\r\n    \"amount\": 1000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "fund account from wallet",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNum\": 100000,\r\n    \"amount\": 200\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/fund/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"fund",
+								""
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/api/v0/fund/",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"v0",
-						"fund",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Transfer to account",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"fromAccount\": 100001,\r\n    \"toAccount\": 100002,\r\n    \"amount\": 100\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Transfer to account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fromAccount\": 100000,\r\n    \"toAccount\": 100001,\r\n    \"amount\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/transfer/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"transfer",
+								""
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/api/v0/transfer/",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"v0",
-						"transfer",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Withdraw from account to wallet",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"accountNum\": 100000,\r\n    \"amount\": 10\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Withdraw from account to wallet",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNum\": 100000,\r\n    \"amount\": 500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v0/withdraw/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"withdraw",
+								""
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host}}/api/v0/withdraw/",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"v0",
-						"withdraw",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "List all accounts",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}/api/v0/accounts/",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"v0",
-						"accounts",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "List all accounts of a user",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{host}}/api/v0/accounts/byUserId/?userid=aba2ffa0-733a-49c7-a9cd-08130a0fcb6c",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"v0",
-						"accounts",
-						"byUserId",
-						""
-					],
-					"query": [
-						{
-							"key": "userid",
-							"value": "aba2ffa0-733a-49c7-a9cd-08130a0fcb6c"
+				{
+					"name": "List all accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v0/accounts/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"accounts",
+								""
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "List all accounts of a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v0/accounts/byUserId/?userid=aba2ffa0-733a-49c7-a9cd-08130a0fcb6c",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v0",
+								"accounts",
+								"byUserId",
+								""
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "aba2ffa0-733a-49c7-a9cd-08130a0fcb6c"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
-	"auth": {
-		"type": "bearer",
-		"bearer": [
-			{
-				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjA3NmI4NmU4LTZhZjAtNDQ3Zi1hNGNhLWJhYjgwNmQ0YzNlOCIsImVtYWlsIjoibmV3dXNlcjJAZ21haWwuY29tIiwibmFtZSI6Ik5ldyBVc2VyMiAiLCJ3YWxsZXRfYmFsIjowfQ.3RdBzgyAs7zxLUOBBwbdoWi1a8zT68NSX92gIcp3wgA",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",
