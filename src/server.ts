@@ -15,13 +15,11 @@ import * as MODELS from './controllers/v0/index.model';
   console.log(await MODELS.createTables())
   
   const app = express();
-  const port = process.env.PORT || 8080;
+  const port = process.env.PORT || 8081;
 
   app.use(bodyParser.json());
 
-  // We set the CORS origin to * so that we don't need to
-  // worry about the complexities of CORS this lesson. It's
-  // something that will be covered in the next course.
+  // We set the CORS origin to * 
   app.use(cors({
     allowedHeaders: [
       'Origin', 'X-Requested-With',

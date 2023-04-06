@@ -8,7 +8,7 @@
     "dev": "npx nodemon",
     "prod": "node ./www/server.js",
     "clean": "rimraf www/ || true",
-    "build": "npm run clean && tsc && copy .npmrc www\\.npmrc && copy package.json www\\package.json && mkdir www\\tmp\\ && cd www && zip -r Archive.zip . && cd ..",
+    "build": "npm run clean && tsc && cp -a .ebextensions www\\.ebextensions && cp -a .platform www\\.platform && copy .npmrc www\\.npmrc && copy package.json www\\package.json && mkdir www\\tmp\\ && cd www && zip -r Archive.zip . && cd ..",
     "test": "mocha -r ts-node/register src/**/*.tests.ts",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix"
